@@ -1,0 +1,249 @@
+css
+:root{
+    /* 1. Spacing Scale (Multiples of 8px is standard) */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+
+    /* 2. Color Palette (Light Mode Default) */
+    --color-bg: #f8f9fa;
+    --color-text: #212529;
+    --color-primary: #0366d6;
+    --color-surface: #ffffff; /* For cards/boxes */
+
+    /* 3. Typography */
+    --font-base: system-ui, -apple-system, sans-serif;
+}
+
+/* System-Level Dark Mode Override */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #121212;
+        --color-text: #e1e4e8;
+        --color-primary: #58a6ff;
+        --color-surface: #1e1e1e;
+    }
+}
+
+css
+/* Reset margins and set box-sizing */
+*,*::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply variables to the body */
+body {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.85),
+        rgba(255, 255, 255, 0.95)
+    ),
+    url('portfoliobackground.jpg');
+    background-color: var(--color-bg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--color-text);
+    font-family: var(--font-base);
+    line-height: 1.6;
+
+    /* Use our spacing variables to give the page breathing room */
+    padding: var(--space-lg);
+
+    /*Smooth transition when switching light/dark mode */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Make links look nice */
+a {
+    color: var(--color-primary)
+}
+
+a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.navbar {
+    display: flex;
+    /*Pushes the logo to the far left, and the links to the far right */
+    justify-content: space-between;
+    /* Vertically centers everything if the logo is taller than the text */
+    align-items: center;
+
+    /* Add some breathing room at the top and bottom */
+    padding: var(--space-md) 1;
+    margin-bottom: var(--space-lg);
+
+    /* A subtle border to separate it from the main content */
+    border-bottom: 1px soild #e1e4e8;
+    text-decoration: none;
+}
+
+.navbar-bottom {
+    display: inline-flex;
+    margin-left: 700px;
+    justify-content: center;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+/* --- Navigation Links --- */
+.nav-links {
+    display: flex;
+    /* The 'gap' property is Flexbox's superpower for spacing items evenly */
+    gap: 1rem;
+    text-decoration: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--color-text); /* Overdrives the default blue link color */
+    text-decoration: none;
+}
+
+.resume-section {
+    margin-left: 5.5rem;
+}
+
+.email-button {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+/* Projects Section */
+#projects {
+    margin-top: var(--space-xl);
+}
+
+#projects h2 {
+    margin-bottom: var(--space-md);
+}
+
+/* The Grid Container */
+.project-grid {
+    display: grid;
+    gap: 10rem;
+/* The magic line */
+grid-template-columns: repeat(auto-fit, minmax(300x, 1fr));
+
+max-width: 1100px;
+
+margin: 0 auto;
+}
+
+/* The Trigger */
+/* does something when the mouse is over the card */
+.project-card:hover {
+    /* move the card up by 4 pixels */
+    transform: translate(-4px);
+
+    /* Adds a shadow underneath */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+
+    /* Highlights border with primary color */
+    border-color: var(--color-primary);
+}
+/* Individual cards */
+.project-card {
+    background-color: var(--color-surface);
+    padding: var(--space-lg);
+    border-radius: 8px;
+    border: 1px solid #e1e4e8;
+    margin: 10px 0 30px 0;
+    /* Use flexbox inside the card to push the tech-stack tags to the bottom */
+    display: flex;
+    flex-direction: column;
+
+    /* The Engine */
+    /* Tells the browser to animate it smoothly over 0.2 secs using an 'ease' timing curve if transform, box-shadow, or border-color change. */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Target the paragraph inside the card to take up remaining space */
+.project-card p {
+    flex-grow: 1;
+    margin: var(--space-lg) 0;
+    color: #555;
+}
+
+/* Tech Stack Tags */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+}
+
+.tech-stack span {
+    background-color: var(--color-bg);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid #e1e4e8;
+}
+
+.social-icon {
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #666;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+@media (perfers-color-scheme: dark) {
+    .social-icon {
+        color: #a0aab5;
+    }
+}
+
+.image-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+}
+
+.image-wrapper{
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #e1e4e8;
+}
+
+.image-wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.centered-paragraph{
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--space-md) 0;
+}
